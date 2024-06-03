@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_sample_submission_tree" model="ir.ui.view">
+        <field name="name">sample.submission.tree</field>
+        <field name="model">sample.submission</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="reference"/>
+                <field name="customer_id"/>
+                <field name="date_submission"/>
+                <field name="state"/>
+                <field name="is_invoiced"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_sample_submission_form" model="ir.ui.view">
+        <field name="name">sample.submission.form</field>
+        <field name="model">sample.submission</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,pending,doing,completed"/>
+                </header>
+                <sheet>
+                    <group>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="reference" readonly="1"/>
+                            </h1>
+                        </div>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="customer_id"
+                                   attrs="{'readonly': [('state', 'in', ['pending','doing','completed'])]}"/>
+                            <field name="date_submission" widget="date"
+                                   attrs="{'readonly': [('state', 'in', ['pending','doing','completed'])]}"/>
+                            <field name="description"/>
+                        </group>
+                        <group>
+                            <field name="price"
+                                   attrs="{'readonly': [('state', 'in', ['pending','doing','completed'])]}"/>
+                            <field name="discount"
+                                   attrs="{'readonly': [('state', 'in', ['pending','doing','completed'])]}"/>
+                            <field name="vat" attrs="{'readonly': [('state', 'in', ['pending','doing','completed'])]}"/>
+                            <field name="state"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Materials Required">
+                            <field name="material_required_ids">
+                                <tree create="0" edit="0" delete="1">
+                                    <field name="sl_no"/>
+                                    <field name="product_id"/>
+                                    <field name="quantity"/>
+                                    <field name="remarks"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_open_material_wizard" model="ir.actions.server">
+        <field name="name">Add Material Required</field>
+        <field name="model_id" ref="sample_submission.model_sample_submission"/>
+        <field name="binding_model_id" ref="sample_submission.model_sample_submission"/>
+        <field name="binding_view_types">form</field>
+        <field name="state">code</field>
+        <field name="code">
+            action = records.action_open_material_wizard()
+        </field>
+    </record>
+
+    <record id="action_generate_report" model="ir.actions.server">
+        <field name="name">Generate Invoice</field>
+        <field name="model_id" ref="sample_submission.model_sample_submission"/>
+        <field name="binding_model_id" ref="sample_submission.model_sample_submission"/>
+        <field name="binding_view_types">form</field>
+        <field name="state">code</field>
+        <field name="code">
+            action = records.action_generate_invoice()
+        </field>
+    </record>
+
+    <record id="sample_submission_action" model="ir.actions.act_window">
+        <field name="name">Sample Submissions</field>
+        <field name="res_model">sample.submission</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click to create a new sample submission.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_sample_submission_root"
+              name="Sample Submission"
+              sequence="10"/>
+
+    <menuitem id="menu_sample_submission"
+              name="Sample Submissions"
+              parent="menu_sample_submission_root"
+              action="sample_submission_action"
+              sequence="10"/>
+
+</odoo>

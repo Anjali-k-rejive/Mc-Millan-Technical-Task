@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sample_submission,access.sample.submission,model_sample_submission,,1,1,1,1
+access_material_required,access.material.required,model_material_required,,1,1,1,1
+access_material_wizard,access.material.wizard,model_material_wizard,,1,1,1,1
+access_sample_submission_invoice_confirm_wizard,access.sample.submission.invoice.confirm.wizard,model_sample_submission_invoice_confirm_wizard,,1,1,1,1
+access_sample_submission_report_wizard,access.sample.submission.report.wizard,model_sample_submission_report_wizard,,1,1,1,1
+

@@ -1,0 +1,22 @@
+{
+    'name': 'Sample Submission',
+    'version': '16.0.1.0.0',
+    'summary': 'sample submissions',
+    'description': 'sample submissions',
+    'sequence': '-100',
+    'category': 'Custom',
+    'depends': ['base','sale','report_xlsx'],
+    'data': [
+        'security/ir.model.access.csv',
+        'security/group.xml',
+        'data/sequence.xml',
+        'wizard/material_wizard.xml',
+        'wizard/invoice_wizard.xml',
+        'wizard/sample_submission_report_wizard.xml',
+        'views/sample_submission_views.xml',
+        'report/sample_submission_report_template.xml',
+        'report/sample_submission_report.xml',
+    ],
+    'installable': True,
+    'application': True,
+}

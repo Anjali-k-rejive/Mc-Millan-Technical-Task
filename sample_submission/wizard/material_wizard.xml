@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_material_wizard_form" model="ir.ui.view">
+        <field name="name">material.wizard.form</field>
+        <field name="model">material.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Material Wizard">
+                <group>
+                    <field name="sl_no" invisible="1"/>
+                    <field name="product_id"/>
+                    <field name="quantity"/>
+                    <field name="remarks"/>
+                </group>
+                <footer>
+                    <button string="Add Materials" type="object" name="create_materials" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

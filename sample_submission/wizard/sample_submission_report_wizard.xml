@@ -1,0 +1,32 @@
+<odoo>
+    <record id="view_report_wizard_form" model="ir.ui.view">
+        <field name="name">sample.submission.report.wizard.form</field>
+        <field name="model">sample.submission.report.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Sample Submission Report">
+                <group>
+                    <field name="date_from"/>
+                    <field name="date_to"/>
+                </group>
+                <footer>
+                    <button name="action_sample_pdf_report" type="object" string="PDF" class="btn-primary"/>
+                    <button name="action_xlsx_report" type="object" string="XLSX" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_report_wizard" model="ir.actions.act_window">
+        <field name="name">Sample Submission Report</field>
+        <field name="res_model">sample.submission.report.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_report_wizard_form"/>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_sample_submission_report"
+              name="Reporting"
+              parent="menu_sample_submission_root"
+              action="action_report_wizard"/>
+</odoo>

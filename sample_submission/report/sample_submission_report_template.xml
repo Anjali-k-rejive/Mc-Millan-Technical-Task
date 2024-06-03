@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- PDF Report Template -->
+    <template id="report_sample_submission">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <div class="watermark">
+                        <img t-att-src="'data:image/png;base64,'+ o.company_id.logo"/>
+
+                    </div>
+                    <h2>Sample Submission Report</h2>
+                    <table class="table table-sm">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Customer</th>
+                                <th>Name</th>
+                                <th>Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="submissions" t-as="submission">
+                                <td>
+                                    <span t-esc="submission['date_submission']"/>
+                                </td>
+                                <td>
+                                    <span t-esc="submission['customer_id'][1]"/>
+                                </td>
+                                <td>
+                                    <span t-esc="submission['reference']"/>
+                                </td>
+                                <td>
+                                    <span t-esc="submission['price']"/>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>
